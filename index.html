@@ -85,7 +85,7 @@ a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 <body>
 <div class="wrap">
 <header class="top">
-  <a class="brand" href="#links">■ vodkq<small>v2.6.0 // Digital Space</small></a>
+  <a class="brand" href="#links">■ vodkq<small>v2.6.9 // Digital Space</small></a>
   <nav aria-label="Разделы">
     <button class="btn" id="n-links" type="button" aria-pressed="true" data-i18n="navLinks"></button>
     <button class="btn" id="n-credits" type="button" aria-pressed="false" data-i18n="navThanks"></button>
@@ -153,22 +153,20 @@ a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
 <script>
 const T={
-ru:{navLinks:"Ссылки",navThanks:"Благодарности",badge:"QA-инженер",
+ru:{navLinks:"Ссылки",navThanks:"Благодарности",badge:"QA-Тестировщик",
 heroTitle:"Коллекция <em>цифровых ссылок</em>.",
 heroSubtitle:"Подборка моих ненужных ресурсов, проектов и платформ, собранных в едином интерфейсе",
 sectionTitle:"Мои профили",linksCount:"4 ресурса",cardTelegram:"Личный канал, блог и так далее",cardGithub:"Мои проекты и репозитории",cardYoutube:"Видео, да и всё",cardSteam:"Мой Steam-профиль",
 thanksBadge:"Благодарности",thanksTitle:"Признание и <em>благодарность</em>.",thanksSubtitle:"Отдельное спасибо Брату и всем, кто помогает.",
 brutName:"Брат",brutRole:"Главный инвестор",brutText:"Особая благодарность Брату за неоценимую помощь, поддержку и вклад в этот проект.",
-allHelpersTitle:"Все, кто помогает",allHelpersRole:"Сообщество, друзья и родственники",allHelpersText:"Спасибо всем, кто помогает",
-footerDesign:"Сделано с точностью"},
-en:{navLinks:"Links",navThanks:"Credits",badge:"QA Engineer",
+allHelpersTitle:"Все, кто помогает",allHelpersRole:"Сообщество, друзья и родственники",allHelpersText:"Спасибо всем, кто помогает"},
+en:{navLinks:"Links",navThanks:"Credits",badge:"QA-Tester",
 heroTitle:"Curated <em>digital links</em>.",
 heroSubtitle:"A collection of my unnecessary resources, projects, and platforms, gathered in a single interface.",
 sectionTitle:"My Profiles",linksCount:"4 items",cardTelegram:"Personal channel, blog, etc.",cardGithub:"My projects and repositories",cardYoutube:"Videos, and that’s pretty much it",cardSteam:"My Steam profile",
 thanksBadge:"Credits",thanksTitle:"Honor & <em>gratitude</em>.",thanksSubtitle:"Special thanks to Brother and everyone who helps.",
 brutName:"Brother",brutRole:"Lead Investor",brutText:"Huge thanks to Brother for the invaluable help, support, and contribution.",
-allHelpersTitle:"Everyone who helps",allHelpersRole:"Community, friends, and family",allHelpersText:"Thanks to everyone who helps",
-footerDesign:"Designed with precision"}};
+allHelpersTitle:"Everyone who helps",allHelpersRole:"Community, friends, and family",allHelpersText:"Thanks to everyone who helps"}};
 let lang="en";
 function setLang(l){lang=l;document.documentElement.lang=l;document.getElementById("lt").textContent=l==="ru"?"EN":"RU";
  document.querySelectorAll("[data-i18n]").forEach(e=>{const v=T[l][e.dataset.i18n];if(v)e.innerHTML=v})}
@@ -182,14 +180,14 @@ document.getElementById("lang").onclick=()=>setLang(lang==="ru"?"en":"ru");
 document.getElementById("theme").onclick=()=>{const r=document.documentElement,d=matchMedia("(prefers-color-scheme:dark)").matches;
  r.dataset.theme=(r.dataset.theme||(d?"dark":"light"))==="dark"?"light":"dark"};
 
-/* Пиксельная сцена */
+
 const MAP=["............................","..................oo........",".................oooo.......",".................oooo.......","..................oo........","........rr..................",".......rrrr......t..........","......rrrrrr....ttt.........","......hhhhhh...ttttt........","......hhdhhh.....b..........","ggggggggggggggggbggggggggggg","gGgggGgggGgggGggbgggGgggGggg","GGGGGGGGGGGGGGGGGGGGGGGGGGGG","GGGGGGGGGGGGGGGGGGGGGGGGGGGG"];
 const COL={o:"#f2b632",r:"#e8552b",h:"#fbf6ea",d:"#1b1a17",t:"#2f7d6b",b:"#6b4a2b",g:"#5aa468",G:"#2f7d6b"};
 const sc=document.getElementById("scene");let s="";
 MAP.forEach((row,y)=>row.padEnd(28,".").split("").forEach((c,x)=>{if(COL[c])s+=`<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${COL[c]}"${c==="o"?' data-sun="1"':""}/>`}));
 sc.innerHTML=s;
 
-/* Интерактив: один canvas для частиц, один rAF для указателя */
+
 const still=matchMedia("(prefers-reduced-motion:reduce)").matches,fine=matchMedia("(pointer:fine)").matches;
 const cv=document.createElement("canvas");cv.setAttribute("aria-hidden","true");cv.style.cssText="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9";document.body.appendChild(cv);
 const cx=cv.getContext("2d");let P=[],raf=0,dpr=1;
@@ -207,12 +205,12 @@ function spawn(x,y,n,cols,sp,g){if(still)return;
  const mx2=fine?300:150;if(P.length>mx2)P.splice(0,P.length-mx2);if(!raf)raf=requestAnimationFrame(tick)}
 const COLS=["#e8552b","#f2b632","#2f7d6b","#2aabee"],burst=(x,y,c)=>spawn(x,y,fine?16:10,c||COLS,4,.18);
 
-/* пейзаж: клик по солнцу — тема, по остальным пикселям — брызги их цвета */
+
 sc.addEventListener("click",e=>{const f=e.target.getAttribute&&e.target.getAttribute("fill");
  if(e.target.dataset&&e.target.dataset.sun)document.getElementById("theme").click();burst(e.clientX,e.clientY,f?[f]:null)});
 document.querySelectorAll(".btn").forEach(b=>b.addEventListener("click",e=>{if(e.isTrusted)burst(e.clientX,e.clientY)}));
 
-/* видимость: тяжёлые анимации идут только на экране */
+
 let sceneVis=true,cubeVis=true,cl=0;
 const cube=document.querySelector(".cube");let rx=-20,ry=30,vx=0,vy=.4,drag=false,lx=0,ly=0;
 function loop(){cl=0;if(!drag){ry+=vx*0+vy;rx+=vx;vx*=.95;vy=Math.abs(vy)<.4?(vy<0?-.4:.4):vy*.95}
@@ -222,13 +220,13 @@ new IntersectionObserver(es=>es.forEach(e=>{if(e.target===sc)sceneVis=e.isInters
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&!cl)loop()});
 loop();
 
-/* куб: тяните, чтобы вращать; прокрутка тоже раскручивает */
+  
 cube.addEventListener("pointerdown",e=>{drag=true;lx=e.clientX;ly=e.clientY;cube.setPointerCapture(e.pointerId);cube.style.cursor="grabbing"});
 cube.addEventListener("pointermove",e=>{if(!drag)return;vy=(e.clientX-lx)*.5;vx=-(e.clientY-ly)*.5;ry+=vy;rx+=vx;lx=e.clientX;ly=e.clientY});
 addEventListener("pointerup",()=>{drag=false;cube.style.cursor="grab"});
 cube.addEventListener("click",e=>burst(e.clientX,e.clientY));
 
-/* указатель: наклон пейзажа и карточек + след — всё в одном rAF */
+
 let mx=0,my=0,pend=0,last=0,hov=null;
 function frame(t){pend=0;
  if(sceneVis)sc.style.transform=`perspective(900px) rotateY(${(mx/innerWidth-.5)*18}deg) rotateX(${-(my/innerHeight-.5)*14}deg)`;
@@ -240,19 +238,8 @@ document.querySelectorAll(".link,.cc").forEach(c=>{
  c.addEventListener("pointerleave",()=>{c.style.transform="";c.style.willChange="";hov=null});
  c.addEventListener("click",e=>burst(e.clientX,e.clientY))});
 
-/* полоса прокрутки */
+  
 const bar=document.createElement("div");bar.style.cssText="position:fixed;top:0;left:0;height:6px;width:100%;background:var(--acc);transform-origin:0 50%;transform:scaleX(0);z-index:10;pointer-events:none";document.body.appendChild(bar);
 let sy=scrollY,sq=0;
 addEventListener("scroll",()=>{const d=scrollY-sy;sy=scrollY;vy+=Math.max(-8,Math.min(8,d*.08));
  if(!sq){sq=1;requestAnimationFrame(()=>{sq=0;const m=document.documentElement.scrollHeight-innerHeight;bar.style.transform=`scaleX(${m>0?scrollY/m:0})`})}},{passive:true});
-
-/* пасхалка: наберите «vodkq» */
-let kb="";addEventListener("keydown",e=>{if(e.key.length!==1)return;kb=(kb+e.key.toLowerCase()).slice(-5);
- if(kb==="vodkq")for(let i=0;i<8;i++)setTimeout(()=>spawn(Math.random()*innerWidth,-10,6,COLS,1.5,.25),i*120)});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll(".rv").forEach(n=>io.observe(n));
-setLang("en");
-if(location.hash==="#credits")show("credits");
-</script>
-</body>
-</html>
