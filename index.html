@@ -10,82 +10,528 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=Pixelify+Sans:wght@500;700&display=swap">
 <style>
-:root{--bg:#f3ebdd;--ink:#1b1a17;--mut:#6b6558;--acc:#e8552b;--mint:#2f7d6b;--sun:#f2b632;--card:#fbf6ea;--px:8px;
---sans:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;--pix:"Pixelify Sans",ui-monospace,Menlo,monospace;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17150f;--ink:#f3ebdd;--mut:#a39b8a;--acc:#ff7a4d;--mint:#4fb59d;--card:#211e16}}
-:root[data-theme="dark"]{--bg:#17150f;--ink:#f3ebdd;--mut:#a39b8a;--acc:#ff7a4d;--mint:#4fb59d;--card:#211e16}
-html{scroll-behavior:smooth}
-*,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.55 var(--sans);overflow-x:hidden}
-a{color:inherit}
-[hidden]{display:none!important}
-:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
-.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
-header.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:20px 0;font-family:var(--pix)}
-.brand{text-decoration:none;font-size:20px;line-height:1.1}.brand small{display:block;font-size:13px;color:var(--mut)}
-header.top nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.btn{font:inherit;font-family:var(--pix);font-size:16px;background:var(--card);color:var(--ink);border:3px solid var(--ink);padding:6px 14px;cursor:pointer;text-decoration:none;box-shadow:4px 4px 0 var(--ink);transition:transform .12s steps(2),box-shadow .12s steps(2)}
-@media (hover:hover){.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}}
-.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
-.btn[aria-pressed="true"]{background:var(--acc);color:#1b1a17}
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(20px,5vw,64px);align-items:center;padding:clamp(24px,6vw,64px) 0 clamp(36px,7vw,80px)}
-.hero.solo{grid-template-columns:1fr}
-.tag{display:inline-block;font-family:var(--pix);color:var(--acc);letter-spacing:.08em;text-transform:uppercase;font-size:15px}
-h1{font-size:clamp(38px,6.6vw,88px);line-height:.98;letter-spacing:-.03em;margin:.2em 0 .3em;font-weight:800}
-h1 em{font-style:normal;background:linear-gradient(var(--sun),var(--sun)) 0 88%/100% .28em no-repeat;color:var(--ink)}
-.lead{max-width:38ch;color:var(--mut);font-size:clamp(17px,2vw,21px)}
-#scene{width:100%;height:auto;border:3px solid var(--ink);box-shadow:8px 8px 0 var(--acc);background:#bfe3da;transition:transform .2s ease-out}
-.divider{height:var(--px);background:repeating-linear-gradient(90deg,var(--ink) 0 var(--px),transparent var(--px) calc(var(--px)*2))}
-section{padding:clamp(32px,6vw,72px) 0}
-.sh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:20px;font-family:var(--pix)}
-.sh h2{margin:0;font-size:22px;color:var(--mint);font-weight:500}.sh span{color:var(--mut)}
-.links{display:flex;gap:16px}
-.link{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:10px;padding:16px;background:var(--card);border:3px solid var(--ink);text-decoration:none;box-shadow:5px 5px 0 var(--ink);transition:box-shadow .12s steps(2),background .12s}
-.link:focus-visible,.link:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--acc);background:var(--sun);color:#1b1a17}
-@media (hover:hover){.link:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--acc);background:var(--sun);color:#1b1a17}}
-.link:active .dom,.link:active p,.link:focus-visible .dom,.link:focus-visible p{color:#1b1a17}
-@media (hover:hover){.link:hover .dom,.link:hover p{color:#1b1a17}}
-.row{display:flex;justify-content:space-between;align-items:center}
-.ico{width:44px;height:44px;display:grid;place-items:center;border:3px solid var(--ink);flex:none}
-.ico svg{width:24px;height:24px;fill:#fff}
-.dom{font-family:var(--pix);font-size:14px;color:var(--mut)}
-.link h3{margin:0;font-size:22px;font-weight:800}
-.link p{margin:0;font-size:15px;color:var(--mut);line-height:1.4}
-.cg{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.cc{padding:22px;background:var(--card);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
-.cc.gold{box-shadow:5px 5px 0 var(--sun)}
-.cc .row{justify-content:flex-start;gap:16px;margin-bottom:12px}
-.cc .ico{width:52px;height:52px;font-size:26px;background:var(--sun)}
-.cc h3{margin:0;font-size:24px}.cc small{font-family:var(--pix);font-size:14px;color:var(--mut)}.cc p{margin:0}
-footer{padding:32px 0 56px;font-family:var(--pix);color:var(--mut);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.rv{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s steps(6)}
-.rv.in{opacity:1;transform:none}
-.cc.rv{transition:opacity .5s}
-#scene{cursor:pointer}
-.cube-wrap{perspective:700px;display:grid;place-items:center;justify-content:center;height:130px;margin-top:20px;width:150px}
-.cube{width:72px;height:72px;position:relative;transform-style:preserve-3d;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-.cube *{-webkit-user-select:none;user-select:none}
-.cube i{position:absolute;inset:0;display:grid;place-items:center;border:3px solid var(--ink);font:normal 24px var(--pix);color:#1b1a17}
-.cube i:nth-child(1){transform:translateZ(36px);background:var(--acc)}
-.cube i:nth-child(2){transform:rotateY(180deg) translateZ(36px);background:var(--sun)}
-.cube i:nth-child(3){transform:rotateY(90deg) translateZ(36px);background:#6fd0c0}
-.cube i:nth-child(4){transform:rotateY(-90deg) translateZ(36px);background:#2aabee}
-.cube i:nth-child(5){transform:rotateX(90deg) translateZ(36px);background:#fbf6ea}
-.cube i:nth-child(6){transform:rotateX(-90deg) translateZ(36px);background:#8bd16b}
-html{-webkit-text-size-adjust:100%}
-a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-@media (pointer:coarse){.btn{min-height:44px;padding:8px 14px}}
-@media (max-width:980px){.links{flex-wrap:wrap}.link{flex:1 1 220px}}
-@media (max-width:520px){.links{flex-direction:column}.link{flex:none}.btn{padding:8px 12px;box-shadow:3px 3px 0 var(--ink)}header.top{padding:14px 0;gap:8px}.hero{padding-top:12px;gap:24px}.cc{padding:18px}#scene{box-shadow:5px 5px 0 var(--acc)}.sh h2{font-size:20px}}
-@media (max-width:760px){.hero{grid-template-columns:1fr}.cg{grid-template-columns:1fr}body{font-size:17px}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+:root {
+    --bg: #f3ebdd;
+    --ink: #1b1a17;
+    --mut: #6b6558;
+    --acc: #e8552b;
+    --mint: #2f7d6b;
+    --sun: #f2b632;
+    --card: #fbf6ea;
+    --px: 8px;
+    --sans: "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --pix: "Pixelify Sans",ui-monospace,Menlo,monospace;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top,0px);
+    padding-bottom: env(safe-area-inset-bottom,0px);
+}
+
+@media (prefers-color-scheme:dark) {
+    :root:not([data-theme="light"]) {
+        --bg: #17150f;
+        --ink: #f3ebdd;
+        --mut: #a39b8a;
+        --acc: #ff7a4d;
+        --mint: #4fb59d;
+        --card: #211e16;
+    }
+}
+
+:root[data-theme="dark"] {
+    --bg: #17150f;
+    --ink: #f3ebdd;
+    --mut: #a39b8a;
+    --acc: #ff7a4d;
+    --mint: #4fb59d;
+    --card: #211e16;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+*,*::before,*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 18px/1.55 var(--sans);
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+}
+
+[hidden] {
+    display: none!important;
+}
+
+:focus-visible {
+    outline: 3px solid var(--acc);
+    outline-offset: 3px;
+}
+
+.wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(16px,4vw,40px);
+}
+
+header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    font-family: var(--pix);
+}
+
+.brand {
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 1.1;
+}
+
+.brand small {
+    display: block;
+    font-size: 13px;
+    color: var(--mut);
+}
+
+header.top nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    font: inherit;
+    font-family: var(--pix);
+    font-size: 16px;
+    background: var(--card);
+    color: var(--ink);
+    border: 3px solid var(--ink);
+    padding: 6px 14px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform .12s steps(2),box-shadow .12s steps(2);
+}
+
+@media (hover:hover) {
+    .btn:hover {
+        transform: translate(2px,2px);
+        box-shadow: 2px 2px 0 var(--ink);
+    }
+}
+
+.btn:active {
+    transform: translate(2px,2px);
+    box-shadow: 2px 2px 0 var(--ink);
+}
+
+.btn[aria-pressed="true"] {
+    background: var(--acc);
+    color: #1b1a17;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: clamp(20px,5vw,64px);
+    align-items: center;
+    padding: clamp(24px,6vw,64px) 0 clamp(36px,7vw,80px);
+}
+
+.hero.solo {
+    grid-template-columns: 1fr;
+}
+
+.tag {
+    display: inline-block;
+    font-family: var(--pix);
+    color: var(--acc);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+h1 {
+    font-size: clamp(38px,6.6vw,88px);
+    line-height: .98;
+    letter-spacing: -.03em;
+    margin: .2em 0 .3em;
+    font-weight: 800;
+}
+
+h1 em {
+    font-style: normal;
+    background: linear-gradient(var(--sun),var(--sun)) 0 88%/100% .28em no-repeat;
+    color: var(--ink);
+}
+
+.lead {
+    max-width: 38ch;
+    color: var(--mut);
+    font-size: clamp(17px,2vw,21px);
+}
+
+#scene {
+    width: 100%;
+    height: auto;
+    border: 3px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--acc);
+    background: #bfe3da;
+    transition: transform .2s ease-out;
+}
+
+.divider {
+    height: var(--px);
+    background: repeating-linear-gradient(90deg,var(--ink) 0 var(--px),transparent var(--px) calc(var(--px)*2));
+}
+
+section {
+    padding: clamp(32px,6vw,72px) 0;
+}
+
+.sh {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-family: var(--pix);
+}
+
+.sh h2 {
+    margin: 0;
+    font-size: 22px;
+    color: var(--mint);
+    font-weight: 500;
+}
+
+.sh span {
+    color: var(--mut);
+}
+
+.links {
+    display: flex;
+    gap: 16px;
+}
+
+.link {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px;
+    background: var(--card);
+    border: 3px solid var(--ink);
+    text-decoration: none;
+    box-shadow: 5px 5px 0 var(--ink);
+    transition: box-shadow .12s steps(2),background .12s;
+}
+
+.link:focus-visible,.link:active {
+    transform: translate(3px,3px);
+    box-shadow: 2px 2px 0 var(--acc);
+    background: var(--sun);
+    color: #1b1a17;
+}
+
+@media (hover:hover) {
+    .link:hover {
+        transform: translate(3px,3px);
+        box-shadow: 2px 2px 0 var(--acc);
+        background: var(--sun);
+        color: #1b1a17;
+    }
+}
+
+.link:active .dom,.link:active p,.link:focus-visible .dom,.link:focus-visible p {
+    color: #1b1a17;
+}
+
+@media (hover:hover) {
+    .link:hover .dom,.link:hover p {
+        color: #1b1a17;
+    }
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ico {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: 3px solid var(--ink);
+    flex: none;
+}
+
+.ico svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+}
+
+.dom {
+    font-family: var(--pix);
+    font-size: 14px;
+    color: var(--mut);
+}
+
+.link h3 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.link p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--mut);
+    line-height: 1.4;
+}
+
+.cg {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.cc {
+    padding: 22px;
+    background: var(--card);
+    border: 3px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+}
+
+.cc.gold {
+    box-shadow: 5px 5px 0 var(--sun);
+}
+
+.cc .row {
+    justify-content: flex-start;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.cc .ico {
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+    background: var(--sun);
+}
+
+.cc h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.cc small {
+    font-family: var(--pix);
+    font-size: 14px;
+    color: var(--mut);
+}
+
+.cc p {
+    margin: 0;
+}
+
+footer {
+    padding: 32px 0 56px;
+    font-family: var(--pix);
+    color: var(--mut);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.rv {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .5s,transform .5s steps(6);
+}
+
+.rv.in {
+    opacity: 1;
+    transform: none;
+}
+
+.cc.rv {
+    transition: opacity .5s;
+}
+
+#scene {
+    cursor: pointer;
+}
+
+.cube-wrap {
+    perspective: 700px;
+    display: grid;
+    place-items: center;
+    justify-content: center;
+    height: 130px;
+    margin-top: 20px;
+    width: 150px;
+}
+
+.cube {
+    width: 72px;
+    height: 72px;
+    position: relative;
+    transform-style: preserve-3d;
+    cursor: grab;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.cube * {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.cube i {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    border: 3px solid var(--ink);
+    font: normal 24px var(--pix);
+    color: #1b1a17;
+}
+
+.cube i:nth-child(1) {
+    transform: translateZ(36px);
+    background: var(--acc);
+}
+
+.cube i:nth-child(2) {
+    transform: rotateY(180deg) translateZ(36px);
+    background: var(--sun);
+}
+
+.cube i:nth-child(3) {
+    transform: rotateY(90deg) translateZ(36px);
+    background: #6fd0c0;
+}
+
+.cube i:nth-child(4) {
+    transform: rotateY(-90deg) translateZ(36px);
+    background: #2aabee;
+}
+
+.cube i:nth-child(5) {
+    transform: rotateX(90deg) translateZ(36px);
+    background: #fbf6ea;
+}
+
+.cube i:nth-child(6) {
+    transform: rotateX(-90deg) translateZ(36px);
+    background: #8bd16b;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+a,button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+@media (pointer:coarse) {
+    .btn {
+        min-height: 44px;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width:980px) {
+    .links {
+        flex-wrap: wrap;
+    }
+    .link {
+        flex: 1 1 220px;
+    }
+}
+
+@media (max-width:520px) {
+    .links {
+        flex-direction: column;
+    }
+    .link {
+        flex: none;
+    }
+    .btn {
+        padding: 8px 12px;
+        box-shadow: 3px 3px 0 var(--ink);
+    }
+    header.top {
+        padding: 14px 0;
+        gap: 8px;
+    }
+    .hero {
+        padding-top: 12px;
+        gap: 24px;
+    }
+    .cc {
+        padding: 18px;
+    }
+    #scene {
+        box-shadow: 5px 5px 0 var(--acc);
+    }
+    .sh h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width:760px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+    .cg {
+        grid-template-columns: 1fr;
+    }
+    body {
+        font-size: 17px;
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    * {
+        animation: none!important;
+        transition: none!important;
+    }
+    .rv {
+        opacity: 1;
+        transform: none;
+    }
+}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header class="top">
-  <a class="brand" href="#links">■ vodkq<small>v2.6.9 // Digital Space</small></a>
+  <a class="brand" href="#links">■ vodkq<small>v2.6.0 // Digital Space</small></a>
   <nav aria-label="Разделы">
     <button class="btn" id="n-links" type="button" aria-pressed="true" data-i18n="navLinks"></button>
     <button class="btn" id="n-credits" type="button" aria-pressed="false" data-i18n="navThanks"></button>
@@ -113,11 +559,11 @@ a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
         <div class="row"><span class="ico" style="background:#2aabee"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.51c-.15.68-.56.84-1.13.53l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.16 5.76-5.2c.25-.22-.05-.34-.39-.12l-7.12 4.48-3.07-.96c-.67-.21-.68-.67.14-.99l12-4.62c.56-.21 1.05.13.84.86z"/></svg></span><span class="dom">t.me ↗</span></div>
         <h3>Telegram</h3><p data-i18n="cardTelegram"></p>
       </a>
-      <a class="link" href="https://github.com/vodkq" target="_blank" rel="noopener noreferrer">
+      <a class="link" href="https://github.com/hit1op" target="_blank" rel="noopener noreferrer">
         <div class="row"><span class="ico" style="background:#24292f"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></span><span class="dom">github.com ↗</span></div>
         <h3>GitHub</h3><p data-i18n="cardGithub"></p>
       </a>
-      <a class="link" href="https://www.youtube.com/@vodkq_love" target="_blank" rel="noopener noreferrer">
+      <a class="link" href="https://www.youtube.com/@lomi__lomi__kik" target="_blank" rel="noopener noreferrer">
         <div class="row"><span class="ico" style="background:#ff0000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></span><span class="dom">youtube.com ↗</span></div>
         <h3>YouTube</h3><p data-i18n="cardYoutube"></p>
       </a>
@@ -148,98 +594,555 @@ a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 </main>
 
 <div class="divider" aria-hidden="true"></div>
-<footer><span>© 2026 vodkq.</span><span data-i18n="footerDesign"></span></footer>
+<footer><span>© 2026 vodkq.</span></footer>
 </div>
 
 <script>
-const T={
-ru:{navLinks:"Ссылки",navThanks:"Благодарности",badge:"QA-Тестировщик",
-heroTitle:"Коллекция <em>цифровых ссылок</em>.",
-heroSubtitle:"Подборка моих ненужных ресурсов, проектов и платформ, собранных в едином интерфейсе",
-sectionTitle:"Мои профили",linksCount:"4 ресурса",cardTelegram:"Личный канал, блог и так далее",cardGithub:"Мои проекты и репозитории",cardYoutube:"Видео, да и всё",cardSteam:"Мой Steam-профиль",
-thanksBadge:"Благодарности",thanksTitle:"Признание и <em>благодарность</em>.",thanksSubtitle:"Отдельное спасибо Брату и всем, кто помогает.",
-brutName:"Брат",brutRole:"Главный инвестор",brutText:"Особая благодарность Брату за неоценимую помощь, поддержку и вклад в этот проект.",
-allHelpersTitle:"Все, кто помогает",allHelpersRole:"Сообщество, друзья и родственники",allHelpersText:"Спасибо всем, кто помогает"},
-en:{navLinks:"Links",navThanks:"Credits",badge:"QA-Tester",
-heroTitle:"Curated <em>digital links</em>.",
-heroSubtitle:"A collection of my unnecessary resources, projects, and platforms, gathered in a single interface.",
-sectionTitle:"My Profiles",linksCount:"4 items",cardTelegram:"Personal channel, blog, etc.",cardGithub:"My projects and repositories",cardYoutube:"Videos, and that’s pretty much it",cardSteam:"My Steam profile",
-thanksBadge:"Credits",thanksTitle:"Honor & <em>gratitude</em>.",thanksSubtitle:"Special thanks to Brother and everyone who helps.",
-brutName:"Brother",brutRole:"Lead Investor",brutText:"Huge thanks to Brother for the invaluable help, support, and contribution.",
-allHelpersTitle:"Everyone who helps",allHelpersRole:"Community, friends, and family",allHelpersText:"Thanks to everyone who helps"}};
-let lang="en";
-function setLang(l){lang=l;document.documentElement.lang=l;document.getElementById("lt").textContent=l==="ru"?"EN":"RU";
- document.querySelectorAll("[data-i18n]").forEach(e=>{const v=T[l][e.dataset.i18n];if(v)e.innerHTML=v})}
-function show(p){const c=p==="credits";
- document.getElementById("p-links").hidden=c;document.getElementById("p-credits").hidden=!c;
- document.getElementById("n-links").setAttribute("aria-pressed",String(!c));document.getElementById("n-credits").setAttribute("aria-pressed",String(c));
- scrollTo({top:0,behavior:"instant"});document.querySelectorAll(c?"#p-credits .rv":"#p-links .rv").forEach(e=>e.classList.add("in"))}
-document.getElementById("n-links").onclick=()=>show("links");
-document.getElementById("n-credits").onclick=()=>show("credits");
-document.getElementById("lang").onclick=()=>setLang(lang==="ru"?"en":"ru");
-document.getElementById("theme").onclick=()=>{const r=document.documentElement,d=matchMedia("(prefers-color-scheme:dark)").matches;
- r.dataset.theme=(r.dataset.theme||(d?"dark":"light"))==="dark"?"light":"dark"};
+// ===== translations =====
+// all the texts of the site, one object for every language
+var translations = {
+    ru: {
+        navLinks: "Ссылки",
+        navThanks: "Благодарности",
+        badge: "QA-Тестировщик",
+        heroTitle: "Коллекция <em>цифровых ссылок</em>.",
+        heroSubtitle: "Подборка моих ненужных ресурсов, проектов и платформ, собранных в едином интерфейсе",
+        sectionTitle: "Мои профили",
+        linksCount: "4 ресурса",
+        cardTelegram: "Личный канал, блог и так далее",
+        cardGithub: "Мои проекты и репозитории",
+        cardYoutube: "Видео, да и всё",
+        cardSteam: "Мой Steam-профиль",
+        thanksBadge: "Благодарности",
+        thanksTitle: "Признание и <em>благодарность</em>.",
+        thanksSubtitle: "Отдельное спасибо Брату и всем, кто помогает.",
+        brutName: "Брат",
+        brutRole: "Главный инвестор",
+        brutText: "Особая благодарность Брату за неоценимую помощь, поддержку и вклад в этот проект.",
+        allHelpersTitle: "Все, кто помогает",
+        allHelpersRole: "Сообщество, друзья и родственники",
+        allHelpersText: "Спасибо всем, кто помогает"
+    },
+    en: {
+        navLinks: "Links",
+        navThanks: "Credits",
+        badge: "QA-Tester",
+        heroTitle: "Curated <em>digital links</em>.",
+        heroSubtitle: "A collection of my unnecessary resources, projects, and platforms, gathered in a single interface.",
+        sectionTitle: "My Profiles",
+        linksCount: "4 items",
+        cardTelegram: "Personal channel, blog, etc.",
+        cardGithub: "My projects and repositories",
+        cardYoutube: "Videos, and that’s pretty much it",
+        cardSteam: "My Steam profile",
+        thanksBadge: "Credits",
+        thanksTitle: "Honor & <em>gratitude</em>.",
+        thanksSubtitle: "Special thanks to Brother and everyone who helps.",
+        brutName: "Brother",
+        brutRole: "Lead Investor",
+        brutText: "Huge thanks to Brother for the invaluable help, support, and contribution.",
+        allHelpersTitle: "Everyone who helps",
+        allHelpersRole: "Community, friends, and family",
+        allHelpersText: "Thanks to everyone who helps"
+    }
+};
 
+// the language that is selected right now
+var currentLanguage = "en";
 
-const MAP=["............................","..................oo........",".................oooo.......",".................oooo.......","..................oo........","........rr..................",".......rrrr......t..........","......rrrrrr....ttt.........","......hhhhhh...ttttt........","......hhdhhh.....b..........","ggggggggggggggggbggggggggggg","gGgggGgggGgggGggbgggGgggGggg","GGGGGGGGGGGGGGGGGGGGGGGGGGGG","GGGGGGGGGGGGGGGGGGGGGGGGGGGG"];
-const COL={o:"#f2b632",r:"#e8552b",h:"#fbf6ea",d:"#1b1a17",t:"#2f7d6b",b:"#6b4a2b",g:"#5aa468",G:"#2f7d6b"};
-const sc=document.getElementById("scene");let s="";
-MAP.forEach((row,y)=>row.padEnd(28,".").split("").forEach((c,x)=>{if(COL[c])s+=`<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${COL[c]}"${c==="o"?' data-sun="1"':""}/>`}));
-sc.innerHTML=s;
+// this function changes the language of the whole page
+function setLanguage(newLanguage) {
+    currentLanguage = newLanguage;
+    document.documentElement.lang = newLanguage;
 
+    // the button shows the OTHER language (if page is russian -> show EN)
+    var languageLabel = document.getElementById("lt");
+    if (newLanguage === "ru") {
+        languageLabel.textContent = "EN";
+    } else {
+        languageLabel.textContent = "RU";
+    }
 
-const still=matchMedia("(prefers-reduced-motion:reduce)").matches,fine=matchMedia("(pointer:fine)").matches;
-const cv=document.createElement("canvas");cv.setAttribute("aria-hidden","true");cv.style.cssText="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9";document.body.appendChild(cv);
-const cx=cv.getContext("2d");let P=[],raf=0,dpr=1;
-let sized=0;function size(){if(sized&&innerWidth===cv.width&&Math.abs(innerHeight-cv.height)<160)return;sized=1;dpr=1;cv.width=innerWidth;cv.height=innerHeight}
-size();addEventListener("resize",size);
-let bb=[0,0,0,0];
-function tick(){cx.clearRect(bb[0],bb[1],bb[2],bb[3]);let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
- for(let i=P.length-1;i>=0;i--){const p=P[i];if(--p.l<=0){P.splice(i,1);continue}
-  p.x+=p.vx;p.y+=p.vy;p.vy+=p.g;cx.globalAlpha=p.l/p.m;cx.fillStyle=p.c;cx.fillRect(p.x,p.y,p.s,p.s);
-  if(p.x<x0)x0=p.x;if(p.y<y0)y0=p.y;if(p.x>x1)x1=p.x;if(p.y>y1)y1=p.y}
- bb=[x0-2,y0-2,x1-x0+14,y1-y0+14];
- raf=P.length?requestAnimationFrame(tick):0}
-function spawn(x,y,n,cols,sp,g){if(still)return;
- for(let i=0;i<n;i++){const a=Math.random()*6.28,v=Math.random()*sp;P.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-1,g,l:40,m:40,s:i%2?6:8,c:cols[i%cols.length]})}
- const mx2=fine?300:150;if(P.length>mx2)P.splice(0,P.length-mx2);if(!raf)raf=requestAnimationFrame(tick)}
-const COLS=["#e8552b","#f2b632","#2f7d6b","#2aabee"],burst=(x,y,c)=>spawn(x,y,fine?16:10,c||COLS,4,.18);
+    // find all elements with data-i18n and put the translated text inside
+    var allTexts = document.querySelectorAll("[data-i18n]");
+    allTexts.forEach(function (element) {
+        var text = translations[newLanguage][element.dataset.i18n];
+        if (text) {
+            element.innerHTML = text;
+        }
+    });
+}
 
+// this function switches between the two tabs (links / credits)
+function showPage(pageName) {
+    var isCredits = pageName === "credits";
 
-sc.addEventListener("click",e=>{const f=e.target.getAttribute&&e.target.getAttribute("fill");
- if(e.target.dataset&&e.target.dataset.sun)document.getElementById("theme").click();burst(e.clientX,e.clientY,f?[f]:null)});
-document.querySelectorAll(".btn").forEach(b=>b.addEventListener("click",e=>{if(e.isTrusted)burst(e.clientX,e.clientY)}));
+    // hide one page and show the other
+    document.getElementById("p-links").hidden = isCredits;
+    document.getElementById("p-credits").hidden = !isCredits;
 
+    // mark the active button
+    document.getElementById("n-links").setAttribute("aria-pressed", String(!isCredits));
+    document.getElementById("n-credits").setAttribute("aria-pressed", String(isCredits));
 
-let sceneVis=true,cubeVis=true,cl=0;
-const cube=document.querySelector(".cube");let rx=-20,ry=30,vx=0,vy=.4,drag=false,lx=0,ly=0;
-function loop(){cl=0;if(!drag){ry+=vx*0+vy;rx+=vx;vx*=.95;vy=Math.abs(vy)<.4?(vy<0?-.4:.4):vy*.95}
- cube.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;if(!still&&cubeVis&&!document.hidden)cl=requestAnimationFrame(loop)}
-new IntersectionObserver(es=>es.forEach(e=>{if(e.target===sc)sceneVis=e.isIntersecting;else{cubeVis=e.isIntersecting;if(cubeVis&&!cl)loop()}})).observe(sc);
-{const vo=new IntersectionObserver(es=>es.forEach(e=>{cubeVis=e.isIntersecting;if(cubeVis&&!cl)loop()}));vo.observe(cube)}
-document.addEventListener("visibilitychange",()=>{if(!document.hidden&&!cl)loop()});
-loop();
+    // go to the top of the page without animation
+    scrollTo({ top: 0, behavior: "instant" });
 
-  
-cube.addEventListener("pointerdown",e=>{drag=true;lx=e.clientX;ly=e.clientY;cube.setPointerCapture(e.pointerId);cube.style.cursor="grabbing"});
-cube.addEventListener("pointermove",e=>{if(!drag)return;vy=(e.clientX-lx)*.5;vx=-(e.clientY-ly)*.5;ry+=vy;rx+=vx;lx=e.clientX;ly=e.clientY});
-addEventListener("pointerup",()=>{drag=false;cube.style.cursor="grab"});
-cube.addEventListener("click",e=>burst(e.clientX,e.clientY));
+    // show the blocks of this page right away
+    var selector = isCredits ? "#p-credits .rv" : "#p-links .rv";
+    document.querySelectorAll(selector).forEach(function (element) {
+        element.classList.add("in");
+    });
+}
 
+// ===== header buttons =====
+document.getElementById("n-links").onclick = function () {
+    showPage("links");
+};
 
-let mx=0,my=0,pend=0,last=0,hov=null;
-function frame(t){pend=0;
- if(sceneVis)sc.style.transform=`perspective(900px) rotateY(${(mx/innerWidth-.5)*18}deg) rotateX(${-(my/innerHeight-.5)*14}deg)`;
- if(hov){const r=hov.getBoundingClientRect(),x=(mx-r.left)/r.width-.5,y=(my-r.top)/r.height-.5;hov.style.transform=`perspective(600px) rotateX(${-y*14}deg) rotateY(${x*14}deg) translate(3px,3px)`}
- if(t-last>80){last=t;spawn(mx,my,1,["#e8552b"],.4,.05)}}
-if(fine&&!still)addEventListener("pointermove",e=>{if(e.pointerType!=="mouse")return;mx=e.clientX;my=e.clientY;if(!pend){pend=1;requestAnimationFrame(frame)}},{passive:true});
-document.querySelectorAll(".link,.cc").forEach(c=>{
- c.addEventListener("pointerenter",e=>{if(e.pointerType==="mouse"&&!still){hov=c;c.style.willChange="transform"}});
- c.addEventListener("pointerleave",()=>{c.style.transform="";c.style.willChange="";hov=null});
- c.addEventListener("click",e=>burst(e.clientX,e.clientY))});
+document.getElementById("n-credits").onclick = function () {
+    showPage("credits");
+};
 
-  
-const bar=document.createElement("div");bar.style.cssText="position:fixed;top:0;left:0;height:6px;width:100%;background:var(--acc);transform-origin:0 50%;transform:scaleX(0);z-index:10;pointer-events:none";document.body.appendChild(bar);
-let sy=scrollY,sq=0;
-addEventListener("scroll",()=>{const d=scrollY-sy;sy=scrollY;vy+=Math.max(-8,Math.min(8,d*.08));
- if(!sq){sq=1;requestAnimationFrame(()=>{sq=0;const m=document.documentElement.scrollHeight-innerHeight;bar.style.transform=`scaleX(${m>0?scrollY/m:0})`})}},{passive:true});
+document.getElementById("lang").onclick = function () {
+    if (currentLanguage === "ru") {
+        setLanguage("en");
+    } else {
+        setLanguage("ru");
+    }
+};
+
+// theme button: light <-> dark
+document.getElementById("theme").onclick = function () {
+    var root = document.documentElement;
+    var systemIsDark = matchMedia("(prefers-color-scheme:dark)").matches;
+    var currentTheme = root.dataset.theme || (systemIsDark ? "dark" : "light");
+    if (currentTheme === "dark") {
+        root.dataset.theme = "light";
+    } else {
+        root.dataset.theme = "dark";
+    }
+};
+
+// ===== pixel landscape =====
+// every letter is one pixel, "." means empty
+var sceneMap = [
+    "............................",
+    "..................oo........",
+    ".................oooo.......",
+    ".................oooo.......",
+    "..................oo........",
+    "........rr..................",
+    ".......rrrr......t..........",
+    "......rrrrrr....ttt.........",
+    "......hhhhhh...ttttt........",
+    "......hhdhhh.....b..........",
+    "ggggggggggggggggbggggggggggg",
+    "gGgggGgggGgggGggbgggGgggGggg",
+    "GGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+    "GGGGGGGGGGGGGGGGGGGGGGGGGGGG"
+];
+
+// color of every letter
+var pixelColors = {
+    o: "#f2b632",
+    r: "#e8552b",
+    h: "#fbf6ea",
+    d: "#1b1a17",
+    t: "#2f7d6b",
+    b: "#6b4a2b",
+    g: "#5aa468",
+    G: "#2f7d6b"
+};
+
+var scene = document.getElementById("scene");
+var sceneHtml = "";
+
+// go through all rows and letters and make a square for each one
+for (var y = 0; y < sceneMap.length; y++) {
+    var row = sceneMap[y].padEnd(28, ".");
+    for (var x = 0; x < row.length; x++) {
+        var letter = row[x];
+        if (pixelColors[letter]) {
+            // the sun pixels get a special attribute so we can click on them
+            var sunAttribute = letter === "o" ? ' data-sun="1"' : "";
+            sceneHtml += '<rect x="' + x + '" y="' + y + '" width="1.02" height="1.02" fill="' + pixelColors[letter] + '"' + sunAttribute + "/>";
+        }
+    }
+}
+scene.innerHTML = sceneHtml;
+
+// ===== particles (one canvas for everything) =====
+// reducedMotion = the user does not want animations
+var reducedMotion = matchMedia("(prefers-reduced-motion:reduce)").matches;
+// hasMouse = true on computers, false on phones
+var hasMouse = matchMedia("(pointer:fine)").matches;
+
+// make a canvas on top of the page
+var canvas = document.createElement("canvas");
+canvas.setAttribute("aria-hidden", "true");
+canvas.style.cssText = "position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9";
+document.body.appendChild(canvas);
+
+var ctx = canvas.getContext("2d");
+var particles = [];
+var particleFrameId = 0;
+var canvasWasSized = false;
+
+// resize the canvas to the window size
+function resizeCanvas() {
+    // do not resize for small height changes (phone address bar)
+    if (canvasWasSized && innerWidth === canvas.width && Math.abs(innerHeight - canvas.height) < 160) {
+        return;
+    }
+    canvasWasSized = true;
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+}
+resizeCanvas();
+addEventListener("resize", resizeCanvas);
+
+// the rectangle that was drawn on the last frame (we clear only it)
+var lastDrawnArea = [0, 0, 0, 0];
+
+// draw one frame of all particles
+function drawParticles() {
+    ctx.clearRect(lastDrawnArea[0], lastDrawnArea[1], lastDrawnArea[2], lastDrawnArea[3]);
+
+    var minX = 1e9;
+    var minY = 1e9;
+    var maxX = -1e9;
+    var maxY = -1e9;
+
+    // go from the end so we can remove particles safely
+    for (var i = particles.length - 1; i >= 0; i--) {
+        var particle = particles[i];
+        particle.life = particle.life - 1;
+        if (particle.life <= 0) {
+            particles.splice(i, 1);
+            continue;
+        }
+
+        // move the particle
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+        particle.speedY += particle.gravity;
+
+        // draw the particle (it becomes more transparent over time)
+        ctx.globalAlpha = particle.life / particle.maxLife;
+        ctx.fillStyle = particle.color;
+        ctx.fillRect(particle.x, particle.y, particle.size, particle.size);
+
+        // remember the area where we drew
+        if (particle.x < minX) minX = particle.x;
+        if (particle.y < minY) minY = particle.y;
+        if (particle.x > maxX) maxX = particle.x;
+        if (particle.y > maxY) maxY = particle.y;
+    }
+
+    lastDrawnArea = [minX - 2, minY - 2, maxX - minX + 14, maxY - minY + 14];
+
+    // keep going only if there are particles left
+    if (particles.length) {
+        particleFrameId = requestAnimationFrame(drawParticles);
+    } else {
+        particleFrameId = 0;
+    }
+}
+
+// create new particles at x, y
+function spawnParticles(x, y, count, colorList, speed, gravity) {
+    if (reducedMotion) {
+        return;
+    }
+    for (var i = 0; i < count; i++) {
+        var angle = Math.random() * 6.28;
+        var particleSpeed = Math.random() * speed;
+        particles.push({
+            x: x,
+            y: y,
+            speedX: Math.cos(angle) * particleSpeed,
+            speedY: Math.sin(angle) * particleSpeed - 1,
+            gravity: gravity,
+            life: 40,
+            maxLife: 40,
+            size: i % 2 ? 6 : 8,
+            color: colorList[i % colorList.length]
+        });
+    }
+
+    // too many particles = lag, so remove the oldest ones
+    var maxParticles = hasMouse ? 300 : 150;
+    if (particles.length > maxParticles) {
+        particles.splice(0, particles.length - maxParticles);
+    }
+
+    // start the animation if it is not running
+    if (!particleFrameId) {
+        particleFrameId = requestAnimationFrame(drawParticles);
+    }
+}
+
+var defaultColors = ["#e8552b", "#f2b632", "#2f7d6b", "#2aabee"];
+
+// small explosion of pixels (less particles on phones)
+function burst(x, y, colorList) {
+    spawnParticles(x, y, hasMouse ? 16 : 10, colorList || defaultColors, 4, 0.18);
+}
+
+// ===== clicks on the landscape =====
+scene.addEventListener("click", function (event) {
+    // the color of the pixel we clicked on
+    var fillColor = event.target.getAttribute && event.target.getAttribute("fill");
+
+    // click on the sun = change the theme
+    if (event.target.dataset && event.target.dataset.sun) {
+        document.getElementById("theme").click();
+    }
+
+    burst(event.clientX, event.clientY, fillColor ? [fillColor] : null);
+});
+
+// pixels when we click the header buttons (only real clicks)
+document.querySelectorAll(".btn").forEach(function (button) {
+    button.addEventListener("click", function (event) {
+        if (event.isTrusted) {
+            burst(event.clientX, event.clientY);
+        }
+    });
+});
+
+// ===== 3d cube =====
+// we only animate things that are visible on the screen
+var sceneVisible = true;
+var cubeVisible = true;
+var cubeFrameId = 0;
+
+var cube = document.querySelector(".cube");
+var cubeRotationX = -20;
+var cubeRotationY = 30;
+var cubeSpeedX = 0;
+var cubeSpeedY = 0.4;
+var isDragging = false;
+var lastPointerX = 0;
+var lastPointerY = 0;
+
+// one frame of the cube animation
+function animateCube() {
+    cubeFrameId = 0;
+
+    if (!isDragging) {
+        cubeRotationY += cubeSpeedY;
+        cubeRotationX += cubeSpeedX;
+        cubeSpeedX *= 0.95;
+        // the cube never fully stops, it keeps a slow spin
+        if (Math.abs(cubeSpeedY) < 0.4) {
+            cubeSpeedY = cubeSpeedY < 0 ? -0.4 : 0.4;
+        } else {
+            cubeSpeedY *= 0.95;
+        }
+    }
+
+    cube.style.transform = "rotateX(" + cubeRotationX + "deg) rotateY(" + cubeRotationY + "deg)";
+
+    if (!reducedMotion && cubeVisible && !document.hidden) {
+        cubeFrameId = requestAnimationFrame(animateCube);
+    }
+}
+
+// remember if the landscape is on the screen
+var sceneObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+        sceneVisible = entry.isIntersecting;
+    });
+});
+sceneObserver.observe(scene);
+
+// start the cube again when it comes back to the screen
+var cubeObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+        cubeVisible = entry.isIntersecting;
+        if (cubeVisible && !cubeFrameId) {
+            animateCube();
+        }
+    });
+});
+cubeObserver.observe(cube);
+
+// also start it again when we come back to the browser tab
+document.addEventListener("visibilitychange", function () {
+    if (!document.hidden && !cubeFrameId) {
+        animateCube();
+    }
+});
+
+animateCube();
+
+// drag the cube with the mouse or finger
+cube.addEventListener("pointerdown", function (event) {
+    isDragging = true;
+    lastPointerX = event.clientX;
+    lastPointerY = event.clientY;
+    cube.setPointerCapture(event.pointerId);
+    cube.style.cursor = "grabbing";
+});
+
+cube.addEventListener("pointermove", function (event) {
+    if (!isDragging) {
+        return;
+    }
+    cubeSpeedY = (event.clientX - lastPointerX) * 0.5;
+    cubeSpeedX = -(event.clientY - lastPointerY) * 0.5;
+    cubeRotationY += cubeSpeedY;
+    cubeRotationX += cubeSpeedX;
+    lastPointerX = event.clientX;
+    lastPointerY = event.clientY;
+});
+
+addEventListener("pointerup", function () {
+    isDragging = false;
+    cube.style.cursor = "grab";
+});
+
+cube.addEventListener("click", function (event) {
+    burst(event.clientX, event.clientY);
+});
+
+// ===== mouse: tilt of the landscape and cards + pixel trail =====
+var mouseX = 0;
+var mouseY = 0;
+var frameIsWaiting = false;
+var lastTrailTime = 0;
+var hoveredCard = null;
+
+// runs once per frame (not on every mouse move, it is faster)
+function updateMouseEffects(time) {
+    frameIsWaiting = false;
+
+    // tilt the landscape
+    if (sceneVisible) {
+        var rotateY = (mouseX / innerWidth - 0.5) * 18;
+        var rotateX = -(mouseY / innerHeight - 0.5) * 14;
+        scene.style.transform = "perspective(900px) rotateY(" + rotateY + "deg) rotateX(" + rotateX + "deg)";
+    }
+
+    // tilt the card under the mouse
+    if (hoveredCard) {
+        var box = hoveredCard.getBoundingClientRect();
+        var cardX = (mouseX - box.left) / box.width - 0.5;
+        var cardY = (mouseY - box.top) / box.height - 0.5;
+        hoveredCard.style.transform = "perspective(600px) rotateX(" + -cardY * 14 + "deg) rotateY(" + cardX * 14 + "deg) translate(3px,3px)";
+    }
+
+    // little trail behind the mouse (not more often than every 80ms)
+    if (time - lastTrailTime > 80) {
+        lastTrailTime = time;
+        spawnParticles(mouseX, mouseY, 1, ["#e8552b"], 0.4, 0.05);
+    }
+}
+
+if (hasMouse && !reducedMotion) {
+    addEventListener("pointermove", function (event) {
+        if (event.pointerType !== "mouse") {
+            return;
+        }
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+        if (!frameIsWaiting) {
+            frameIsWaiting = true;
+            requestAnimationFrame(updateMouseEffects);
+        }
+    }, { passive: true });
+}
+
+// cards: remember which one is under the mouse
+document.querySelectorAll(".link,.cc").forEach(function (card) {
+    card.addEventListener("pointerenter", function (event) {
+        if (event.pointerType === "mouse" && !reducedMotion) {
+            hoveredCard = card;
+            card.style.willChange = "transform";
+        }
+    });
+
+    card.addEventListener("pointerleave", function () {
+        card.style.transform = "";
+        card.style.willChange = "";
+        hoveredCard = null;
+    });
+
+    card.addEventListener("click", function (event) {
+        burst(event.clientX, event.clientY);
+    });
+});
+
+// ===== scroll progress bar =====
+var progressBar = document.createElement("div");
+progressBar.style.cssText = "position:fixed;top:0;left:0;height:6px;width:100%;background:var(--acc);transform-origin:0 50%;transform:scaleX(0);z-index:10;pointer-events:none";
+document.body.appendChild(progressBar);
+
+var lastScrollY = scrollY;
+var scrollFrameIsWaiting = false;
+
+addEventListener("scroll", function () {
+    // scrolling also makes the cube spin faster
+    var scrollChange = scrollY - lastScrollY;
+    lastScrollY = scrollY;
+    cubeSpeedY += Math.max(-8, Math.min(8, scrollChange * 0.08));
+
+    // update the bar once per frame
+    if (!scrollFrameIsWaiting) {
+        scrollFrameIsWaiting = true;
+        requestAnimationFrame(function () {
+            scrollFrameIsWaiting = false;
+            var maxScroll = document.documentElement.scrollHeight - innerHeight;
+            var progress = maxScroll > 0 ? scrollY / maxScroll : 0;
+            progressBar.style.transform = "scaleX(" + progress + ")";
+        });
+    }
+}, { passive: true });
+
+// ===== easter egg: type "vodkq" =====
+var typedKeys = "";
+
+addEventListener("keydown", function (event) {
+    // ignore special keys like Enter or Shift
+    if (event.key.length !== 1) {
+        return;
+    }
+    // keep only the last 5 letters
+    typedKeys = (typedKeys + event.key.toLowerCase()).slice(-5);
+
+    if (typedKeys === "vodkq") {
+        // rain of pixels
+        for (var i = 0; i < 8; i++) {
+            setTimeout(function () {
+                spawnParticles(Math.random() * innerWidth, -10, 6, defaultColors, 1.5, 0.25);
+            }, i * 120);
+        }
+    }
+});
+
+// ===== show blocks when we scroll to them =====
+var revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll(".rv").forEach(function (block) {
+    revealObserver.observe(block);
+});
+
+// start with english
+setLanguage("en");
+
+// open the credits tab if the link ends with #credits
+if (location.hash === "#credits") {
+    showPage("credits");
+}
+</script>
+</body>
+</html>
